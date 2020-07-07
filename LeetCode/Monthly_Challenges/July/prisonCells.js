@@ -28,6 +28,9 @@
  */
 var prisonAfterNDays = function(cells, N) {
 // Use an auxilary object to detect a cycle
+// Time: still O(NM) where N = days, M = cells.length because at worst, there 
+// exists no cycle to shorten the process
+// Space: O(M) 
     const auxObj = {};
     let cellsNextDay = cells.slice();
     // After first day, the first and last cell will always be unoccupied
@@ -43,9 +46,14 @@ var prisonAfterNDays = function(cells, N) {
             }
             else cellsNextDay[i] = 0;
         }
+        // the moment a cycle is detected, we have all the necessary info
         if (auxObj.hasOwnProperty(cellsNextDay)) {
+            // there are N days remaining, and index is size of cycle
+            // N % index = index of the cycle we saved in auxilary object
             index = N % index;
             return Object.keys(auxObj).find(key => 
+                // when array is stored in object: [1, 2, 3] => '1,2,3'
+                // split it and convert all the '0's and '1's to 0's and 1's
                 auxObj[key] === index).split(',').map(Number);
         }
         else auxObj[cellsNextDay] = index;
