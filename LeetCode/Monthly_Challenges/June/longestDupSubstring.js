@@ -45,7 +45,6 @@ var longestDupSubstring = function(S) {
     }
     
     let i = 0, j, k = n;
-    let isFound, substring, currFound = '';
     while (i < k) {
         j = Math.floor((i + k) / 2);
         if (rabinKarp(j) !== -1) i = j + 1;
