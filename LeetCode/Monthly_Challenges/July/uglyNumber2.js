@@ -14,43 +14,61 @@
  * @return {number}
  */
 var nthUglyNumber = function(n) {
-    
-    class PrioritySet {
-        constructor() {
-            this.storage = [];
-            this.size = 0;
-        }
-        insert(num) {
-            if (this.size === 0 ||
-                num >= this.storage[this.size - 1]) {
-                this.storage.push(num);
-                this.size += 1;
-            }
-            else {
-                for (let i = 0; i < this.size; i++) {
-                    if (num === this.storage[i]) break;
-                    if (num < this.storage[i]) {
-                        this.storage.splice(i, 0, num);
-                        this.size += 1;
-                        break;
-                    }
-                }
-            }
-        }
-        get(index) {
-            return this.storage[index];
-        }
+// Using three pointers to find the next ugly number
+// Time:  O(n)
+// Space: O(n)
+    const uglyNums = [1];   // first ugly number is 1
+    let i2 = 0, i3 = 0, i5 = 0;
+    for (let i = 1; i < n; i++) {
+        uglyNums[i] = Math.min(uglyNums[i2] * 2,
+                               uglyNums[i3] * 3,
+                               uglyNums[i5] * 5);
+        // There should be no duplicate ugly numbers in the array
+        // ex. if the current uglyNum is 6, both i2 and i3 would increment
+        if (uglyNums[i2] * 2 === uglyNums[i]) i2 += 1;
+        if (uglyNums[i3] * 3 === uglyNums[i]) i3 += 1;
+        if (uglyNums[i5] * 5 === uglyNums[i]) i5 += 1;
     }
+    return uglyNums[n-1];
     
-    const uglyNums = new PrioritySet();
-    uglyNums.insert(1);
-    let i = 0, currNum;
-    while (i < n) {
-        currNum = uglyNums.get(i);
-        uglyNums.insert(currNum * 2);
-        uglyNums.insert(currNum * 3);
-        uglyNums.insert(currNum * 5);
-        i += 1;
-    }
-    return uglyNums.get(n - 1);
+// Using a priority queue to insert ugly numbers in ascending order
+// Time:  O(n^2) because inserting into a priority queue is O(n)
+// Space: O(n)
+    // class PriorityQueue {
+    //     constructor() {
+    //         this.storage = [];
+    //         this.size = 0;
+    //     }
+    //     insert(num) {
+    //         if (this.size === 0 ||
+    //             num >= this.storage[this.size - 1]) {
+    //             this.storage.push(num);
+    //             this.size += 1;
+    //         }
+    //         else {
+    //             for (let i = 0; i < this.size; i++) {
+    //                 if (num === this.storage[i]) break;
+    //                 if (num < this.storage[i]) {
+    //                     this.storage.splice(i, 0, num);
+    //                     this.size += 1;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     get(index) {
+    //         return this.storage[index];
+    //     }
+    // }
+    // const uglyNums = new PriorityQueue();
+    // uglyNums.insert(1);
+    // let i = 0, currNum;
+    // while (i < n) {
+    //     currNum = uglyNums.get(i);
+    //     uglyNums.insert(currNum * 2);
+    //     uglyNums.insert(currNum * 3);
+    //     uglyNums.insert(currNum * 5);
+    //     i += 1;
+    // }
+    // return uglyNums.get(n - 1);
 };
