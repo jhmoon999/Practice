@@ -35,7 +35,7 @@ var lastStoneWeight = function(stones) {
             [arr[0], arr[arr.length - 1]] = [arr[arr.length - 1], arr[0]];
             let i = 0, child1 = 2 * i + 1, child2 = 2 * i + 2;
             
-            // edge case for when only two numbers in heap
+            //* edge case for when only two numbers in heap
             if (child1 < arr.length - 1 && child2 === arr.length - 1) {
                 if (arr[i] < arr[child1]) 
                     [arr[i], arr[child1]] = [arr[child1], arr[i]];
