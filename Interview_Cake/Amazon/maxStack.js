@@ -55,7 +55,7 @@ class MaxStack {
     pop() {
         let temp = this.stack.pop();
         this.max = this.stack.peek()[1];
-        return temp;
+        return temp[0];
     }
     // peek stays the same
     peek() {

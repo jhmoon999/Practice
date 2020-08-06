@@ -40,12 +40,12 @@ var mergeRanges = function(meetings) {
 
     merged = [meetings[0]];
     for (let i = 1; i < meetings.length; i++) {
-        const {startA, endA} = merged[merged.length - 1];
-        const {startB, endB} = meetings[i];
+        let meeting1 = merged[merged.length - 1], meeting2 = meetings[i];
         // if overlap, then merge the meeting ranges
-        if (startB <= endA) {
-            merged[merged.length - 1].startTime = startA;
-            merged[merged.length - 1].endTime = Math.max(endA, endB);
+        if (meeting2.startTime <= meeting1.endTime) {
+            merged[merged.length - 1].startTime = meeting1.startTime;
+            merged[merged.length - 1].endTime = Math.max(meeting1.endTime, 
+                                                         meeting2.endTime);
         }
         // if no overlap, then push meeting range to merged array
         else merged.push(meetings[i]);

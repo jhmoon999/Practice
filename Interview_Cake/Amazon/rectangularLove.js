@@ -41,8 +41,8 @@ var rectIntersection = function(rect1, rect2) {
         return {point: start, length: end - start};
     }
 
-    const x = overlap(rect1.leftX, rect1.width, rect1.bottomY, rect1.height);
-    const y = overlap(rect2.leftX, rect2.width, rect2.bottomY, rect2.height);
+    const x = overlap(rect1.leftX, rect1.width, rect2.leftX, rect2.width);
+    const y = overlap(rect1.bottomY, rect1.height, rect2.bottomY, rect2.height);
     if (x.point === null || y.point === null) {
         return { leftX: null, bottomY: null, width: null, height: null };
     }
