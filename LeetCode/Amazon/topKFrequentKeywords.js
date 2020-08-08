@@ -42,6 +42,8 @@
 // Explanation:
 // "betacellular" is occuring in 3 different reviews. "anacell" and "deltacellular" are occuring in 2 reviews, but "anacell" is lexicographically smaller.
 
+// k = length of reviews, m = average length of a review, n = length of keywords
+// Time: O(kmn + nlog(n)), Space: O(n)
 var topKFrequentKeywords = function(reviews, keywords, k) {
     // create auxilary object to store frequency of keywords in reviews
     const freqs = {};
