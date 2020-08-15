@@ -17,14 +17,17 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
+// Time: O(n!) - the number of permutations for n elements is n!
+// Space: O(n!) - recursive stack
     const perms = [];
     let temp;
-    
+    // helper function to create push permutations into perms array
     const createPerm = function(currPerm) {
         if (currPerm.length === nums.length) {
             perms.push(currPerm);
             return;
         }
+        // put every number that is not already in currPerm into currPerm
         for (let i = 0; i < nums.length; i++) {
             if (!currPerm.includes(nums[i])) {
                 temp = currPerm.slice();
