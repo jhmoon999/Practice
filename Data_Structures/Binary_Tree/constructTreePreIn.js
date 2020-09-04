@@ -1,26 +1,27 @@
-/*
-Binary tree reconstruction given inOrder and preOrder traversals
+//* LC 105: Construct binary tree from preOrder and inOrder traversals
 
-Example:
-Given: InOrder  = [4, 2, 5,       1,        8, 6, 3, 7]
+// Binary tree reconstruction given inOrder and preOrder traversals
 
-Given: PreOrder = [1, 2, 4, 5, 3, 6, 8, 7]
+// Example:
+// Given: InOrder  = [4, 2, 5, 1, 8, 6, 3, 7]
 
-class Node {
-  Node left;
-  Node right;
-  int data;
-}
+// Given: PreOrder = [1, 2, 4, 5, 3, 6, 8, 7]
 
-Output should be:
-    1
-   /\
-  2   3
- /\   /\
-4  5 6  7
-    /
-   8
-*/
+// class Node {
+//   Node left;
+//   Node right;
+//   int data;
+// }
+
+// Output should be:
+//     1
+//    /\
+//   2   3
+//  /\   /\
+// 4  5 6  7
+//     /
+//    8
+
    
 var constructTree = function(inOrder, preOrder) {
     
