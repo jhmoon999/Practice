@@ -12,17 +12,33 @@
       <input onChange={this.debouncedOnChange} />
   }
   
-  }
-  
-  
-  [jjjjjjjjjjjjj ]
-  Implement debounce
 */
 
-var debounce = function(callback, time) {
+// https://medium.com/@TCAS3/debounce-deep-dive-javascript-es6-e6f8d983b7a1
+
+const debounce = (fn, time) => {
+    let timeout;
   
-  setTimeout(callback, time);
-}
+    return function() {
+      const functionCall = () => fn.apply(this, arguments);
+      
+      clearTimeout(timeout);
+      timeout = setTimeout(functionCall, time);
+    }
+  }
+
+//   Create a wrapper function with two arguments: a callback and an integer for the timeout— this will hold the state of the timeout. Note that the wrapper function will only be called once, when the wrapper function is referenced.
+//   Declare the timeout variable, which will be undefined until the timeout is set in the returned function.
+//   Return a function — this will be called every time the function is called. Make sure that the function returned is not an arrow function, as you will lose context.
+//   Apply this context to callback function, and attach arguments.
+//   clearTimeout if timeout exists.
+//   setTimeout and pass the applied function.
+//   This way, the clearTimeout resets the timeout each time the function is called, and if the function is not called within the time provided, then it will finally fire the function.
+//   Using the function would look like this:
+//   window.addEventListener('keyup', debounce((e) => {
+//     console.log(e);
+//   }, 1000));
+//   The first argument being passed is the event handler, and the second is the amount of time in milliseconds that we would consider an element “inactive” after the last event is fired.
 
 /*
     Time traveling stock trader problem. You hav e a time machine and want to know the maximum profit you can make if you went back in time knowing the close prices of MSFT for each day over the last ten years.
