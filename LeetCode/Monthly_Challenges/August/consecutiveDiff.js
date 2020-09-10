@@ -21,6 +21,8 @@
  * @return {number[]}
  */
 var numsSameConsecDiff = function(N, K) {
+// DFS choose digit and then choose subsequent valid digit (+/- K)
+// Time: O(N * 2^N), Space: O(2^N)
     const ans = [];
     
     // remember, '00' is not valid, but '0' is
@@ -31,11 +33,14 @@ var numsSameConsecDiff = function(N, K) {
             ans.push(parseInt(numStr));
             return;
         }
+        //* Long way
         // for (let i = 0; i <= 9; i++) {
         //     if (Math.abs(digit - i) === K) {
         //         addDigit(numStr + i, i);
         //     }
         // }
+
+        //* Shorter way
         if (digit - K >= 0) addDigit(numStr + (digit - K), digit - K);
         if (K !== 0) {
             if (digit + K <= 9) addDigit(numStr + (digit + K), digit + K);
