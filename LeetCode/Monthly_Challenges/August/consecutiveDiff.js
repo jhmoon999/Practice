@@ -28,6 +28,7 @@ var numsSameConsecDiff = function(N, K) {
     // remember, '00' is not valid, but '0' is
     if (N === 1) ans.push(0);
     
+    // find subsequent valid digit
     const addDigit = function(numStr, digit) {
         if (numStr.length === N) {
             ans.push(parseInt(numStr));

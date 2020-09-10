@@ -23,22 +23,31 @@
  * @return {void} Do not return anything, modify head in-place instead.
  */
 var reorderList = function(head) {
-// Brute-force
+// Brute force - put all nodes in an array so pointer logic can be applied
+// Reconnect linked list alternating from first node and last node and 
+// reach the middle.
+// Time: O(n), Space: O(n)
+
     if (head === null) return;
     const nodes = [];
     let currNode = head;
+    // put all nodes in nodes array
     while (currNode !== null) {
         nodes.push(currNode);
         currNode = currNode.next;
     }
 
+    // reverse is boolean to keep track of front (i) or back (j) pointer
     let i = 0, j = nodes.length - 1, reverse = false;
+    // keep going until i = j (middle node is reached)
     while (i <= j) {
+        // front pointer
         if (!reverse) {
             currNode = nodes[i];
             currNode.next = nodes[j];
             i += 1;
         }
+        // back pointer
         else {
             currNode = nodes[j];
             currNode.next = nodes[i];
@@ -47,6 +56,7 @@ var reorderList = function(head) {
         currNode = currNode.next;
         reverse = !reverse;
     }
-    currNode.next = null;   // IMPORTANT: w/o this, there will be a cycle in linkedlist
+    currNode.next = null;   //* IMPORTANT: w/o this, there will be a 
+                            //* cycle in linkedlist
 };
 
