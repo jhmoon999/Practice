@@ -1,0 +1,12 @@
+{
+  "name": "horizontal-scroller",
+  "displayName": "horizontal-scroller",
+  "expo": {
+    "name": "horizontal-scroller",
+    "slug": "horizontal-scroller",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
