@@ -1,1 +1,0 @@
-React Native, v2 - Kadi Kraman
