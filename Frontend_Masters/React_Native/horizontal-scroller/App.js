@@ -5,7 +5,9 @@ import {
     Text,
     View,
     SafeAreaView,
-    Image
+    Image,
+    TouchableHighlight,
+    Linking
 } from 'react-native';
 // TODO: separate data as a separate component
 const data = [
@@ -43,18 +45,23 @@ export default class StylingServicesCard extends React.Component {
                     renderItem={({ item }) => {
                         return (
                             <View style={styles.item}>
+                              <TouchableHighlight
+                                onPress={() => {
+                                  Linking.openURL('https://google.com')
+                                }}>
                                 <Image
                                     source={{uri: item.imageUrl}}
                                     style={{     
-                                      flex: 0.5,
+                                      flex: 0.6,
                                       aspectRatio: 0.5,
-                                      margin: 20,
+                                      margin: 40,
                                       resizeMode: 'contain' 
                                     }}
                                 />
-                                <Text style={{textAlign: 'center'}}>
-                                  {item.name}
-                                </Text>
+                              </TouchableHighlight>
+                              <Text style={{textAlign: 'center'}}>
+                                {item.name}
+                              </Text>
                             </View>
                         );
                     }}
@@ -73,6 +80,7 @@ const styles = StyleSheet.create({
     },
     // TODO: style each item
     item: {
+      alignItems: 'center'
     }
 });
 
